@@ -508,6 +508,32 @@ void PolygenMesh::_buildDrawNodeList()
         glEnd();
     }
 
+    /*------------- Draw Node (CNC_PRT) -------------*/
+    if (this->meshType == CNC_PRT) {
+        glPointSize(10.0);
+        glBegin(GL_POINTS);
+        for (GLKPOSITION Pos = meshList.GetHeadPosition(); Pos != NULL; ) {
+            QMeshPatch* mesh = (QMeshPatch*)(meshList.GetNext(Pos));
+
+            if (mesh->patchName != "nozzle") continue;
+            float rr, gg, bb;
+
+            for (GLKPOSITION PosNode = (mesh->GetNodeList()).GetHeadPosition(); PosNode != NULL;) {
+                QMeshNode* node = (QMeshNode*)((mesh->GetNodeList()).GetNext(PosNode));
+
+                double xx, yy, zz; node->GetCoord3D_last(xx, yy, zz);
+
+                if (xx == 0.0 && yy == 0.0 && zz == 0.0) {
+                    // tip node
+                    rr = 1.0; gg = 0.0; bb = 0.0;
+                    glColor3f(rr, gg, bb);
+                    drawSingleNode(node);
+                }
+            }
+        }
+        glEnd();
+    }
+
     /*------------- Draw Node (SPIRAL_PATH) -------------*/
     if (this->meshType == SPIRAL_PATH) {
 
