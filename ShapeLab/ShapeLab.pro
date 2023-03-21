@@ -15,7 +15,7 @@ UI_DIR += ./GeneratedFiles
 INCLUDEPATH += $$PWD/../ThirdPartyDependence/eigen3
 INCLUDEPATH += $$PWD/../ThirdPartyDependence
 
-HEADERS  +=MainWindow.h
+HEADERS  +=MainWindow.h\
 dirent.h\
 fileIO.h\
 GcodeGeneration.h\
