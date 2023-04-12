@@ -1,8 +1,5 @@
-# Toolpath_Gcode_generation
-Simple example which contains the different toolpath generation, and G-code generation for the 5AXISMAKER machine
-
 # Toolpath Generation and CNC Simulation
-
+Simple example which contains the different toolpath generation, and G-code generation for the 5AXISMAKER machine
 
 
 ## Installation
@@ -10,8 +7,7 @@ Simple example which contains the different toolpath generation, and G-code gene
 Please compile the code with QMake file "TpGene_and_cncSim.pro".
 
 **Platform**: 
-	Windows + Visual Studio + QT-plugin 
-	(tested QT version: 5.12.3 + msvc2017_64)
+	Windows + Visual Studio 2022 + QT-plugin (tested QT version: 5.12.3 + msvc2017_64)
 
 **Install Steps**: 
 - **Install Visual Studio Extension plug-in (QT VS Tool)** to open the .pro file and generate the project
@@ -21,9 +17,12 @@ Please compile the code with QMake file "TpGene_and_cncSim.pro".
 
 ## Usage
 
+Prerequisite: Remesh the surface layer:
+
+
 **Step 0: input layer files (.obj) .**
 - The files of the layers (.obj) for the model that is going to print need to be saved in the following folder
-'**./3D_Print\Toolpath_Gcode_generation-main\DataSet\CURVED_LAYER**'
+'**../DataSet/source_layer/output**'
 
 **Step 1:  Read Layers .**
 Click button '**1. Read Layers**'.
