@@ -18,9 +18,9 @@ Please compile the code with QMake file "TpGene_and_cncSim.pro".
 ## Usage
 
 Prerequisite: Remesh the surface layer:
-../DataSet/source_layer/input; 
-python; 
-meshlab(2022)
+-../DataSet/source_layer/input; 
+-python; 
+-meshlab(2022)
 
 
 **Step 0: input layer files (.obj) .**
