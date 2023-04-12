@@ -17,14 +17,11 @@ Please compile the code with QMake file "TpGene_and_cncSim.pro".
 
 ## Usage
 
-Prerequisite: Remesh the surface layer:
--../DataSet/source_layer/input; 
--python; 
--meshlab(2022)
-
-
 **Step 0: input layer files (.obj) .**
-- The files of the layers (.obj) for the model that is going to print need to be saved in the following folder
+Prerequisite: Remesh the surface layer ( python + meshlab 2022.02 )
+- source directory: ../DataSet/source_layer/input; 
+- double click "remesh.py" to do remesh.
+- So, the files of the layers (.obj) for the model will be saved in the following folder
 '**../DataSet/source_layer/output**'
 
 **Step 1:  Read Layers .**
@@ -66,33 +63,39 @@ Choosing and Clicking button
 - the '**Spiral**', '**Contour**' and '**Zigzag**' are 3 different patterns for the generated toolpath.
 
 **Step 4: CNC Motion Planning**
-- In the '**Model**' box, input the folder name of the needed model, which is stored at :
- '\Toolpath_Gcode_generation-main\DataSet\FABRICATION'
- 
-- Click the '**1. Read data**' Button,
-the programme will automatically load the  Waypoints and Slices (Obj.) files.
 
-- Input the needed layers and 'toolLns'
+Prerequisite: 
+- Copy the "CURVED_LAYER" and "TOOL_PATH" in "../DataSet" and save them into "../DataSet/FABRICATION/_modelName_/" 
+
+Note: "_modelName_" can be decided by user, e.g. "Dome".
+
+- Remesh the surface layer ( python + meshlab 2022.02 ) to make the layer sparse and speed up the calculation of layer height for extrusion volume calculation
+-- source directory: ../DataSet/FABRICATION/_modelName_; 
+-- double click "remesh.py" to do remesh.
+-- So, the files of the layers (.obj) for the model will be saved in the following folder
+'../DataSet/FABRICATION/_modelName_/layer_Simplified'
+
+- In the '**Model**' box, input the folder name of the needed model, which is stored at :
+ '**../DataSet/FABRICATION/_modelName_/layer_Simplified**' and '**../DataSet/FABRICATION/_modelName_/waypoint**'
+ 
+- Click the '**1. Read data**'‘,
+--the programme will automatically load the  Waypoints and Slices (Obj.) files.
+--Input the range of needed layers in 'From' and To'
+--Input tool length in 'toolLns'
 
 - Click the '**2. Calculate Extrusion Volume**',
-The volume of the material will be calculated base on the waypoint distance and height.
+--The volume of the material will be calculated base on the waypoint width, distance and height.
 
-- Click the '** 3. Singularity Optimization**',
-It will calculate the movements of the 5axis and verify the 'PosNor' to reduce the effect of Singularity.
+- Click the '**3. Singularity Optimization**',
+--It will use the position and normal of waypoints to calculate the movements of the 5axis to reduce the nagetive effect of Singularity.
 
-**Step 5: generate G-code file** 
-Clicking button '**5. G Code Writing**'. 
+- Click the'**4. G Code Writing** '
+-- The G code will be stored at folder 
+'**../DataSet/G_CODE**'
 
-- The G code will be stored at folder 
-'**\Toolpath_Gcode_generation-main\DataSet\G_CODE**'
-
-**Step 6: simulate the motion of printing** 
-Clicking button '**Simulation**'.
-
-- The **progress bar** shows the percentage of completed print volume, and clicking the checkbox '**stop**' will stop the simulation from running.
+- Click the **Simulate** 
+--The **progress bar** shows the percentage of completed print volume, and clicking the checkbox '**stop**' will stop the simulation from running.
 
 ## Curved Layer Generation Algorithm
 
-- The inputed layers and waypoints are generated from this paper ([*ACM Transactions on Graphics (Proceedings of SIGGRAPH Asia 2020)*, vol.39, no.6, article no.204, 2020.](https://dl.acm.org/doi/abs/10.1145/3414685.3417834)) , In specifically, this repository is supporting the part "Fabrication Enabling" of above TOG paper.([Source Code](https://github.com/GuoxinFang/ReinforcedFDM)),([Project Page](https://guoxinfang.github.io/ReinforcedFDM.html)),( [Video Link](https://www.youtube.com/watch?v=X2o2-SJFv2M)).
-
-
+[Tianyu Zhang](https://www.linkedin.com/in/tianyu-zhang-49b8231b5/), Guoxin Fang, Yuming Huang, Neelotpal Dutta, Sylvain Lefebvre, Zekai Murat Kilic, and [Charlie C.L. Wang](https://mewangcl.github.io/), [*ACM Transactions on Graphics (SIGGRAPH Asia 2022)*, vol.41, no.6, article no.277 (15 pages), December 2022](https://dl.acm.org/doi/10.1145/3550454.3555516)
