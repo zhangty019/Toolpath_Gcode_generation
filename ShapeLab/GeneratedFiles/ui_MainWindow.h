@@ -136,6 +136,9 @@ public:
     QPushButton *pushButton_GcodeSimulation;
     QProgressBar *progressBar_GcodeSimulation;
     QCheckBox *checkBox_stopSimulation;
+    QFrame *line_5;
+    QLabel *label_13;
+    QPushButton *pushButton_Tp4Ur5e;
     QTreeView *treeView;
     QHBoxLayout *horizontalLayout_6;
     QPushButton *pushButton_clearAll;
@@ -346,7 +349,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(dockWidget->sizePolicy().hasHeightForWidth());
         dockWidget->setSizePolicy(sizePolicy);
-        dockWidget->setMinimumSize(QSize(300, 900));
+        dockWidget->setMinimumSize(QSize(300, 928));
         dockWidget->setMaximumSize(QSize(300, 524287));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
@@ -786,6 +789,29 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_5);
 
+        line_5 = new QFrame(dockWidgetContents);
+        line_5->setObjectName(QString::fromUtf8("line_5"));
+        line_5->setFrameShape(QFrame::HLine);
+        line_5->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line_5);
+
+        label_13 = new QLabel(dockWidgetContents);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        QFont font8;
+        font8.setFamily(QString::fromUtf8("3ds"));
+        font8.setPointSize(10);
+        label_13->setFont(font8);
+
+        verticalLayout->addWidget(label_13);
+
+        pushButton_Tp4Ur5e = new QPushButton(dockWidgetContents);
+        pushButton_Tp4Ur5e->setObjectName(QString::fromUtf8("pushButton_Tp4Ur5e"));
+        pushButton_Tp4Ur5e->setFont(font4);
+        pushButton_Tp4Ur5e->setStyleSheet(QString::fromUtf8("color: rgb(128,128,128);"));
+
+        verticalLayout->addWidget(pushButton_Tp4Ur5e);
+
         treeView = new QTreeView(dockWidgetContents);
         treeView->setObjectName(QString::fromUtf8("treeView"));
         treeView->setEnabled(true);
@@ -971,6 +997,8 @@ public:
         pushButton_Gcode_writting->setText(QApplication::translate("MainWindow", "4.G Code Writing", nullptr));
         pushButton_GcodeSimulation->setText(QApplication::translate("MainWindow", "5.Simulation", nullptr));
         checkBox_stopSimulation->setText(QApplication::translate("MainWindow", "stop", nullptr));
+        label_13->setText(QApplication::translate("MainWindow", "Robot Toolpath Output", nullptr));
+        pushButton_Tp4Ur5e->setText(QApplication::translate("MainWindow", "1. Ur5e robot Gcode Generation", nullptr));
         pushButton_clearAll->setText(QApplication::translate("MainWindow", "Clear All", nullptr));
         boxDeselect->setText(QApplication::translate("MainWindow", "deselect", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));

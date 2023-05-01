@@ -103,6 +103,9 @@ private slots:
     void runWriteGcode();
     void runGcodeSimulation();
 
+    /*This is for Ur robot code generation*/
+    void UR_robot_waypoint_Generation();
+
     /*This is for display*/
     void update_Layer_Display();
     void all_Display();

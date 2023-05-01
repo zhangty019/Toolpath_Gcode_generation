@@ -128,7 +128,7 @@
    <property name="minimumSize">
     <size>
      <width>300</width>
-     <height>900</height>
+     <height>928</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -996,6 +996,44 @@
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="Line" name="line_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_13">
+       <property name="font">
+        <font>
+         <family>3ds</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Robot Toolpath Output</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Tp4Ur5e">
+       <property name="font">
+        <font>
+         <family>3ds</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(128,128,128);</string>
+       </property>
+       <property name="text">
+        <string>1. Ur5e robot Gcode Generation</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QTreeView" name="treeView">

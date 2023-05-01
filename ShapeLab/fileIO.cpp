@@ -311,3 +311,74 @@ void fileIO::_readCncData(PolygenMesh* CncPart, std::string packName) {
 		cncPatch->patchName = CNCfileSet[i].data();
 	}
 }
+
+int fileIO::read_layer_toolpath_files(
+	PolygenMesh* Slices, PolygenMesh* Waypoints, std::string Dir) {
+
+	std::string PosNorFileDir = Dir + "/TOOL_PATH";
+	std::string LayerFileDir = Dir + "/layer_Simplified";
+
+	this->_natSort(PosNorFileDir, wayPointFileCell);
+	this->_natSort(LayerFileDir, sliceSetFileCell);
+
+	if (wayPointFileCell.size() != sliceSetFileCell.size()) {
+		std::cout << "The file number of slics and toolpath is not the same, please check." << std::endl;
+		return 0;
+	}
+
+	this->_readWayPointData(Waypoints, PosNorFileDir);
+	this->_readSliceData(Slices, LayerFileDir);
+
+	return wayPointFileCell.size();
+}
+
+void fileIO::output_toolpath_UR5e(PolygenMesh* toolPath, std::string FileDir) {
+
+	this->_remove_allFile_in_Dir(FileDir);
+	std::cout << "The toolpath will be skiped when the node number is less than "
+		<< threshold_nodeNum << "\nThe index is listed below:" << std::endl;
+
+	//output waypoints
+	for (GLKPOSITION Pos = toolPath->GetMeshList().GetHeadPosition(); Pos;) {
+		QMeshPatch* each_toolpath = (QMeshPatch*)toolPath->GetMeshList().GetNext(Pos);
+
+		if (each_toolpath->GetNodeNumber() < threshold_nodeNum) {
+			std::cout << each_toolpath->patchName << "\n";
+			continue;
+		}
+
+		std::string eachToolpath_dir = FileDir + each_toolpath->patchName;
+
+		//std::cout << "Output File: " << TOOLPATH_dir << std::endl;
+
+		std::ofstream toolpathFile(eachToolpath_dir);
+
+		double pp[3];
+		for (GLKPOSITION posNode = each_toolpath->GetNodeList().GetHeadPosition(); posNode != nullptr;) {
+			QMeshNode* node = (QMeshNode*)each_toolpath->GetNodeList().GetNext(posNode);
+
+			bool jump_flag = false;
+			if (node->Jump_nextSecStart || node->GetIndexNo() == 0) jump_flag = true;
+
+			double extrusion = node->m_E;
+			if (node->GetIndexNo() == 0) extrusion = 0.0;
+
+			toolpathFile
+				<< node->m_printPos[0] << " "
+				<< node->m_printPos[1] << " "
+				<< node->m_printPos[2] << " "
+				<< node->m_printNor[0] << " "
+				<< node->m_printNor[1] << " "
+				<< node->m_printNor[2] << " "
+				<< extrusion << " "
+				<< jump_flag << " "
+				<< 1
+				<< std::endl;
+		}
+
+		toolpathFile.close();
+	}
+	std::cout << "\nFinish output toolpath into : " << FileDir << std::endl;
+
+	std::cout << "\n------------------------\nPlease make sure the input mesh is Zup\n------------------------\n" << std::endl;
+}

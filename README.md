@@ -96,6 +96,14 @@ Note: "_modelName_" can be decided by user, e.g. "Dome".
 - Click the **Simulate** 
 --The **progress bar** shows the percentage of completed print volume, and clicking the checkbox '**stop**' will stop the simulation from running.
 
+**Notes: this project also support the waypoint generation for the UR robot
+Prerequisite: 
+- open the ../DataSet/FABRICATION/_modelName_" and duble click "copy and remesh.py",it will Copy the "CURVED_LAYER" and "TOOL_PATH" in "../DataSet" and save them into "../DataSet/FABRICATION/_modelName_/" 
+- Click the '**1. Urrobot**'‘,
+--the programme will automatically load the  Waypoints and Slices (Obj.) files.
+--output the data for ur5e robot into "../DataSet/FABRICATION/_modelName_"
+
+
 ## Curved Layer Generation Algorithm
 
 [Tianyu Zhang](https://www.linkedin.com/in/tianyu-zhang-49b8231b5/), Guoxin Fang, Yuming Huang, Neelotpal Dutta, Sylvain Lefebvre, Zekai Murat Kilic, and [Charlie C.L. Wang](https://mewangcl.github.io/), [*ACM Transactions on Graphics (SIGGRAPH Asia 2022)*, vol.41, no.6, article no.277 (15 pages), December 2022](https://dl.acm.org/doi/10.1145/3550454.3555516)

@@ -152,7 +152,9 @@ public:
 	Eigen::Vector3d m_printPos = Eigen::Vector3d::Zero();
 	Eigen::Vector3d m_DHW = Eigen::Vector3d::Ones();
 	Eigen::MatrixXd m_XYZBCE = Eigen::MatrixXd::Zero(1, 6);
+	Eigen::MatrixXd m_XYZBC = Eigen::MatrixXd::Zero(1, 5);
 	double m_F = 0.0;
+	double m_E = 0.0;
 	bool Jump_nextSecStart = false;	bool Jump_preSecEnd = false;
 	int  Jump_SecIndex; // NodeIndex in JumpPatch
 	bool isSingularNode = false;// Singular node

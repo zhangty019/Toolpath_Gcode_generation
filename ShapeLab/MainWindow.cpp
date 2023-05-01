@@ -30,6 +30,7 @@
 #include "spiralToolpath.h"
 #include "heatmethodfield.h"
 #include "toolpathGeneration.h"
+#include "robotWpGeneration.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -145,7 +146,8 @@ void MainWindow::createActions()
     connect(ui->pushButton_calSingularOpt, SIGNAL(released()), this, SLOT(runSingularityOpt()));
     connect(ui->pushButton_Gcode_writting, SIGNAL(released()), this, SLOT(runWriteGcode()));
     connect(ui->pushButton_GcodeSimulation, SIGNAL(released()), this, SLOT(runGcodeSimulation()));
-
+    //Nutton for the waypoint of Ur robot
+    connect(ui->pushButton_Tp4Ur5e, SIGNAL(released()), this, SLOT(UR_robot_waypoint_Generation()));
 }
 
 void MainWindow::open()
@@ -1122,4 +1124,70 @@ Eigen::Vector3d MainWindow::_calPartGuesture(
     temp << temp_4d[0], temp_4d[1], temp_4d[2];
 
     return temp;
+}
+
+//Ur robot waypoint code generation
+void MainWindow::UR_robot_waypoint_Generation() {
+
+    this->on_pushButton_clearAll_clicked();
+
+    PolygenMesh* isoLayerSet = this->_detectPolygenMesh(CURVED_LAYER);
+    if (isoLayerSet == NULL) {
+        isoLayerSet = this->_buildPolygenMesh(CURVED_LAYER, "IsoLayer");
+    }
+    else {
+        isoLayerSet->ClearAll();
+        std::cout << "There is already existing a isoLayerSet PolygenMesh, it will be reconstructed!" << std::endl;
+    }
+
+    PolygenMesh* toolpathSet = this->_detectPolygenMesh(TOOL_PATH);
+    if (toolpathSet == NULL) {
+        toolpathSet = this->_buildPolygenMesh(TOOL_PATH, "Toolpath");
+    }
+    else {
+        toolpathSet->ClearAll();
+        std::cout << "There is already existing a toolpathSet PolygenMesh, it will be reconstructed!" << std::endl;
+    }
+
+    fileIO* IO_operator = new fileIO();
+    std::string FileDir = "../DataSet/FABRICATION/robotWpGeneration";
+    int layerNum = IO_operator->read_layer_toolpath_files(
+        isoLayerSet, toolpathSet, FileDir);
+    ui->spinBox_ShowLayerIndex->setMaximum(layerNum - 1);
+
+    //platform
+    PolygenMesh* platform = this->_detectPolygenMesh(CNC_PRT);
+    if (platform == NULL) {
+        platform = this->_buildPolygenMesh(CNC_PRT, "platform");
+
+        QMeshPatch* platform_patch = new QMeshPatch;
+        platform_patch->patchName = "patch_platform";
+        platform_patch->SetIndexNo(platform->GetMeshList().GetCount());
+        platform->GetMeshList().AddTail(platform_patch);
+
+        std::string inputFile = "../DataSet/FABRICATION/cnc_prt/platform_zup.obj";
+        platform_patch->inputOBJFile((char*)inputFile.c_str(), false);
+
+        //std::cout << "platform_patch->drawThisPatch = " << platform_patch->drawThisPatch << std::endl;
+        //std::cout << "There are " << platform->GetMeshList().GetCount() << " patch(s) in the PolygenMesh\n";
+    }
+    else {
+        std::cout << "There is already existing a platform PolygenMesh, please check!" << std::endl;
+        return;
+    }
+
+    robotWpGeneration* rob_wp = new robotWpGeneration();
+    rob_wp->initial(isoLayerSet, toolpathSet, platform, ui->doubleSpinBox_toolPathWidth->value());
+    rob_wp->calDHW();
+    rob_wp->modify_wp_normal(false);
+    delete rob_wp;
+
+    FileDir = "../DataSet/FABRICATION/robotWpGeneration/toolpath_robot_ur/";
+    IO_operator->output_toolpath_UR5e(toolpathSet, FileDir);
+    delete IO_operator;
+
+    pGLK->refresh(true);
+    pGLK->Zoom_All_in_View();
+    std::cout << "Finish generating waypoints for UR5e robot.\n" << std::endl;
+
 }

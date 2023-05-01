@@ -21,10 +21,12 @@ fileIO.h\
 GcodeGeneration.h\
 heatmethodfield.h\
 spiralToolpath.h\
+robotWpGeneration.h\
 toolpathGeneration.h\
 
 #ui_MainWindow not included.
 SOURCES += main.cpp\
+robotWpGeneration.cpp\
 MainWindow.cpp\
 fileIO.cpp\
 heatmethodfield.cpp\

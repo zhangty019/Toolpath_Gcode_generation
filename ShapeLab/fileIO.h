@@ -4,7 +4,7 @@
 class fileIO
 {
 public:
-	fileIO() {}
+	fileIO() {};
 	~fileIO() {};
 
 	void input_remeshed_Layer(PolygenMesh* isoLayerSet, std::string path);
@@ -15,6 +15,9 @@ public:
 	int read_layer_toolpath_cnc_files(
 		PolygenMesh* Slices, PolygenMesh* Waypoints, PolygenMesh* CncPart,
 		std::string Dir, std::string modelName);
+	int read_layer_toolpath_files(
+		PolygenMesh* Slices, PolygenMesh* Waypoints, std::string Dir);
+	void output_toolpath_UR5e(PolygenMesh* toolPath, std::string FileDir);
 
 private:
 
@@ -30,5 +33,6 @@ private:
 	std::vector<std::string> wayPointFileCell;// Waypoints Dir Files
 	std::vector<std::string> sliceSetFileCell;// Layers Dir Files
 	std::vector<std::string> cncFileCell;// Cnc Dir Files
+	int threshold_nodeNum = 0;
 
 };
