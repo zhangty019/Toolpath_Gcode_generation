@@ -1,5 +1,5 @@
 # Toolpath Generation and CNC Simulation
-Simple example which contains the different toolpath generation, and G-code generation for the 5AXISMAKER machine
+Simple example which contains the different toolpath generation, and G-code generation for the 5AXISMAKER machine or UR5e robot
 
 
 ## Installation
@@ -96,12 +96,12 @@ Note: "_modelName_" can be decided by user, e.g. "Dome".
 - Click the **Simulate** 
 --The **progress bar** shows the percentage of completed print volume, and clicking the checkbox '**stop**' will stop the simulation from running.
 
-**Notes: this project also support the waypoint generation for the UR robot
+**Notes**: This project also support the waypoint generation for the UR robot
 Prerequisite: 
-- open the ../DataSet/FABRICATION/_modelName_" and duble click "copy and remesh.py",it will Copy the "CURVED_LAYER" and "TOOL_PATH" in "../DataSet" and save them into "../DataSet/FABRICATION/_modelName_/" 
-- Click the '**1. Urrobot**'‘,
---the programme will automatically load the  Waypoints and Slices (Obj.) files.
---output the data for ur5e robot into "../DataSet/FABRICATION/_modelName_"
+- open the ../DataSet/FABRICATION/robotWpGeneration" and duble click "copy_and_remesh.py", it will copy the "CURVED_LAYER" and "TOOL_PATH" in "../DataSet" and save them into "../DataSet/FABRICATION/" 
+- Click the '**1. Ur5e robot Gcode Generation**'‘,
+--the programme will automatically load the  Waypoints(*.txt) and Slices (*.obj) files.
+--output the data for ur5e robot into "../DataSet/FABRICATION/toolpath_robot_ur/"
 
 
 ## Curved Layer Generation Algorithm
