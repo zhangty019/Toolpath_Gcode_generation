@@ -104,9 +104,9 @@ Prerequisite:
 
 - Click the '**1. Ur5e robot Gcode Generation**'‘,
 
---the programme will automatically load the  Waypoints(*.txt) and Slices (*.obj) files.
+-- the programme will automatically load the  Waypoints(*.txt) and Slices (*.obj) files.
 
---output the data for ur5e robot into "../DataSet/FABRICATION/toolpath_robot_ur/"
+-- output the data for ur5e robot into "../DataSet/FABRICATION/toolpath_robot_ur/"
 
 
 ## Curved Layer Generation Algorithm
