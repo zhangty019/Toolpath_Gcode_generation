@@ -97,10 +97,15 @@ Note: "_modelName_" can be decided by user, e.g. "Dome".
 --The **progress bar** shows the percentage of completed print volume, and clicking the checkbox '**stop**' will stop the simulation from running.
 
 **Notes**: This project also support the waypoint generation for the UR robot
+
 Prerequisite: 
+
 - open the ../DataSet/FABRICATION/robotWpGeneration" and duble click "copy_and_remesh.py", it will copy the "CURVED_LAYER" and "TOOL_PATH" in "../DataSet" and save them into "../DataSet/FABRICATION/" 
+
 - Click the '**1. Ur5e robot Gcode Generation**'‘,
+
 --the programme will automatically load the  Waypoints(*.txt) and Slices (*.obj) files.
+
 --output the data for ur5e robot into "../DataSet/FABRICATION/toolpath_robot_ur/"
 
 
