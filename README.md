@@ -108,7 +108,6 @@ Prerequisite:
 
 -- output the data for ur5e robot into "../DataSet/FABRICATION/toolpath_robot_ur/"
 
-
 ## Curved Layer Generation Algorithm
 
 [Tianyu Zhang](https://www.linkedin.com/in/tianyu-zhang-49b8231b5/), Guoxin Fang, Yuming Huang, Neelotpal Dutta, Sylvain Lefebvre, Zekai Murat Kilic, and [Charlie C.L. Wang](https://mewangcl.github.io/), [*ACM Transactions on Graphics (SIGGRAPH Asia 2022)*, vol.41, no.6, article no.277 (15 pages), December 2022](https://dl.acm.org/doi/10.1145/3550454.3555516)
