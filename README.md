@@ -89,7 +89,7 @@ Note: "_modelName_" can be decided by user, e.g. "Dome".
 - Click the '**3. Singularity Optimization**',
 --It will use the position and normal of waypoints to calculate the movements of the 5axis to reduce the nagetive effect of Singularity.
 
-- Click the'**4. G Code Writing** '
+- Click the'**4. G Code Writing**'
 -- The G code will be stored at folder 
 '**../DataSet/G_CODE**'
 
@@ -100,13 +100,13 @@ Note: "_modelName_" can be decided by user, e.g. "Dome".
 
 - Prerequisite: 
 
--- open the ../DataSet/FABRICATION/robotWpGeneration" and duble click "copy_and_remesh.py", it will copy the "CURVED_LAYER" and "TOOL_PATH" in "../DataSet" and save them into "../DataSet/FABRICATION/" 
+--open the ../DataSet/FABRICATION/robotWpGeneration" and duble click "copy_and_remesh.py", it will copy the "CURVED_LAYER" and "TOOL_PATH" in "../DataSet" and save them into "../DataSet/FABRICATION/" 
 
 - Click the '**1. Ur5e robot Gcode Generation**'‘,
 
--- the programme will automatically load the  Waypoints(*.txt) and Slices (*.obj) files.
+--the programme will automatically load the  Waypoints(*.txt) and Slices (*.obj) files.
 
--- output the data for ur5e robot into "../DataSet/FABRICATION/toolpath_robot_ur/"
+--output the data for ur5e robot into "../DataSet/FABRICATION/toolpath_robot_ur/"
 
 ## Curved Layer Generation Algorithm
 
